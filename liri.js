@@ -107,7 +107,9 @@ function getTwitterFeed() {
 if (process.argv[2] == "do-what-it-says") {
 
 	fs.readFile("./random.txt", "utf8", function(error, data){
-		if (error) return error;
+		if (error) {
+			return console.log('Error occured: ' + err)
+		}
 
 		data = data.split(",");
 
