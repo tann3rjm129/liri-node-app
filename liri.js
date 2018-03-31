@@ -1,10 +1,9 @@
 
 require("dotenv").config();
-
-var keys = require('./keys.js');
 var fs = require('fs');
 
-// var inquirer = require('inquirer');
+var keys = require('./keys.js');
+
 var Spotify = require('node-spotify-api');
 var Twitter = require('twitter');
 var request = require('request');
@@ -12,7 +11,7 @@ var request = require('request');
 var spotify = new Spotify(keys.spotify);
 var client = new Twitter(keys.twitter);
 
-
+// accounting for user input
 if (process.argv[2] == "spotify-this-song") {
 
 	getSong();
@@ -30,7 +29,7 @@ if (process.argv[2] == "movie-this") {
 
 
 
-// Songify Function
+// Spotify Function
  function getSong(songQuery) {
 
      var search = songQuery || process.argv[3] || "The Sign Ace of Base";
@@ -95,3 +94,26 @@ function getTwitterFeed() {
 	}
 });
 };
+
+// Reads text from random.txt file
+
+if (process.argv[2] == "do-what-it-says") {
+
+	fs.readFile("./random.txt", "utf8", function(error, data){
+		if (error) throw error;
+
+		data = data.split(",");
+
+		switch(data[0]) {
+			case "my-tweets":
+				getTwitterFeed();
+				break;
+			case "spotify-this-song":
+				getSong(data[1]);
+				break;
+			case "movie-this":
+				getMovie(data[1]);
+				break;
+		}
+	});
+}
