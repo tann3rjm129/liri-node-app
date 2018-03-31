@@ -13,4 +13,3 @@ This application uses a Language Interpretation and Recognition Interface (LIRI)
 
 Java, API's and Node 
 
-See website here https://tann3rjm129.github.io/tanner-project1/
