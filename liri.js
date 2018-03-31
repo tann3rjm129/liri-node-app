@@ -44,12 +44,12 @@ if (process.argv[2] == "movie-this") {
               return console.log('Error occured: ' + err)
           }
           
-          console.log('\n-------------\n')
-          console.log('Title: ' + data.tracks.items[0].name)
-          console.log('Artist: ' + data.tracks.items[0].artists[0].name) 
-          console.log('Album Name: ' + data.tracks.items[0].album.name)   
-          console.log('Preview URL' + data.tracks.items[0].preview_url)
-          console.log('\n-------------\n') 
+			console.log("\n-------------\n");
+          console.log("\nTitle: " + data.tracks.items[0].name + "\n")
+          console.log("\nArtist: " + data.tracks.items[0].artists[0].name + "\n") 
+          console.log("\nAlbum Name: " + data.tracks.items[0].album.name + "\n")   
+          console.log("\nPreview URL: " + data.tracks.items[0].preview_url + "\n")
+			console.log("\n-------------\n");
       
         })
  };
@@ -60,9 +60,9 @@ function getTwitterFeed() {
     client.get('statuses/user_timeline', params, function (err, tweets, response) {
         if (!err){
             tweets.forEach(element => {
-                console.log('\n-------------\n')
+				console.log("\n-------------\n");
                 console.log(element.text)
-                console.log('\n-------------\n')
+				console.log("\n-------------\n");
             });
         }
     })
@@ -88,9 +88,16 @@ function getTwitterFeed() {
 		var plot = responseJson.Plot;
 		var actors = responseJson.Actors;
 
-		console.log('\n-------------\n')
-		console.log("Movie title: " + movie + "\n" + "Year: " + year + "\n" + "IMBD Rating: " + IMDBrating + "\n" + "Rotten Tomatoes Rating: " + RTrating + "\n" + "Country: " + country + "\n" + "Language: " + language + "\n" + "Plot: " + plot + "\n" + "Actors: " + actors);
-		console.log('\n-------------\n')
+		console.log("\n-------------\n");
+		console.log("\nMovie title: " + movie + "\n");
+		console.log("\nYear: " + year + "\n");
+		console.log("\nIMBD Rating: " + IMDBrating + "\n");
+		console.log("\nRotten Tomatoes Rating: " + RTrating + "\n");
+		console.log("\nCountry: " + country + "\n");
+		console.log("\nLanguage: " + language + "\n");
+		console.log("\nPlot: " + plot + "\n");
+		console.log("\nActors: " + actors + "\n");
+		console.log("\n-------------\n");
 	}
 });
 };
@@ -100,7 +107,7 @@ function getTwitterFeed() {
 if (process.argv[2] == "do-what-it-says") {
 
 	fs.readFile("./random.txt", "utf8", function(error, data){
-		if (error) throw error;
+		if (error) return error;
 
 		data = data.split(",");
 
